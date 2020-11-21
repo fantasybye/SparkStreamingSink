@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!--
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License. See accompanying LICENSE file.
+-->
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+<property>
+	<name>dfs.nameservices</name>
+	<value>mycluster</value>
+</property>
+<property>
+	<name>dfs.ha.namenodes.mycluster</name>
+	<value>nn1,nn2,nn3</value>
+</property>
+<property>
+	<name>dfs.namenode.rpc-address.mycluster.nn1</name>
+	<value>master:8020</value>
+</property>
+<property>
+	<name>dfs.namenode.rpc-address.mycluster.nn2</name>
+	<value>slave1:8020</value>
+</property>
+<property>
+	<name>dfs.namenode.rpc-address.mycluster.nn3</name>
+	<value>slave2:8020</value>
+</property>
+<property>
+	<name>dfs.namenode.http-address.mycluster.nn1</name>
+	<value>master:9870</value>
+</property>
+<property>
+	<name>dfs.namenode.http-address.mycluster.nn2</name>
+	<value>slave1:9870</value>
+</property>
+<property>
+	<name>dfs.namenode.http-address.mycluster.nn3</name>
+	<value>slave2:9870</value>
+</property>
+<property>
+	<name>dfs.namenode.shared.edits.dir</name>
+	<value>qjournal://master:8485;slave1:8485;slave2:8485/mycluster</value>
+</property>
+<property>
+	<name>dfs.client.failover.proxy.provider.mycluster</name>
+	<value>org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider</value>
+</property>
+<property>
+	<name>dfs.ha.fencing.methods</name>
+	<value>sshfence</value>
+</property>
+<property>
+	<name>dfs.ha.fencing.ssh.private-key-files</name>
+	<value>/root/.ssh/id_rsa</value>
+</property>
+<property>
+	<name>dfs.ha.fencing.ssh.connect-timeout</name>
+	<value>30000</value>
+</property>
+<property>
+	<name>dfs.ha.automatic-failover.enabled</name>
+	<value>true</value>
+</property>
+<property>
+   <name>dfs.namenode.name.dir</name>
+   <value>/home/hadoopData/dfs/name</value>
+   <description>datanode 上存储 hdfs 名字空间元数据</description>
+ </property>
+ <property>
+   <name>dfs.blocksize</name>
+   <value>268435456</value>
+   <description>HDFS blocksize of 256MB for large file-systems</description>
+ </property>
+<property>
+   <name>dfs.hosts.exclude</name>
+   <value>/opt/soft/hadoop-3.2.1/conf/hdfs_exclude</value>
+   <description>List of excluded DataNodes</description>
+ </property>
+
+ <property>
+   <name>dfs.datanode.data.dir</name>
+   <value>/home/hadoopData/dfs/data</value>
+   <description>datanode 上数据块的物理存储位置</description>
+ </property>
+ 
+ <property>
+   <name>dfs.replication</name>
+   <value>3</value>
+   <description>副本个数，默认配置是 3，应小于 datanode 机器数量</description>
+ </property>
+ 
+ <property>
+   <name>dfs.webhdfs.enabled</name>
+   <value>true</value>
+ </property>
+ 
+ <property>
+   <name>dfs.permissions.superusergroup</name>
+   <value>staff</value>
+ </property>
+ 
+ <property>
+   <name>dfs.permissions.enabled</name>
+   <value>false</value>
+ </property>
+</configuration>
